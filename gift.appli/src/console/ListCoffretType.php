@@ -13,7 +13,10 @@ Eloquent::init(__DIR__ . '/../conf/db.ini');
 $coffret = CoffretType::all();
 
 foreach($coffret as $coffretType) {
-    echo $coffretType->id . " " . $coffretType->libelle . "\n";
+    echo $coffretType->id . " " . $coffretType->libelle . "\n" . "Prestations associées : \n" ;
+    foreach($coffretType->prestations as $prestation) {
+        echo "  - " . $prestation->id . " " . $prestation->libelle . "\n";
+    }
 };
 
 
