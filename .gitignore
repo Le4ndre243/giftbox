@@ -6,3 +6,9 @@
 /storage/*.key
 /public/storage
 .DS_Store
+vendor/
+composer.lock
+.env
+.ini
+db.ini
+gift.db.conf.ini
