@@ -11,7 +11,17 @@ use gift\appli\models\Prestation;
 
 Eloquent::init(__DIR__ . '/../conf/db.ini');
 
+// Version 1 
 $prestations = Prestation::all();
+
+foreach($prestations as $prestation) {
+    echo $prestation->id . " " . $prestation->libelle . " " . $prestation->categorie->libelle . "\n";
+};
+
+echo "\n--- Version avec eager loading ---\n\n";
+
+// Version 2 
+$prestations = Prestation::with('categorie')->get();
 
 foreach($prestations as $prestation) {
     echo $prestation->id . " " . $prestation->libelle . " " . $prestation->categorie->libelle . "\n";
