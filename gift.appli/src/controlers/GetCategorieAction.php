@@ -28,6 +28,7 @@ class GetCategorieAction{
                 <h1>{$categorie->libelle}</h1>
                 <p>ID : {$categorie->id}</p>
                 <p>Description : {$categorie->description}</p>
+                <a href="/giftbox/categorie/{$categorie->id}/prestations">Voir les prestations →</a><br>
                 <a href="/giftbox/categories">← Retour à la liste</a>
             </body>
             </html>

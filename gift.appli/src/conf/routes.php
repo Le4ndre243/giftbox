@@ -17,4 +17,6 @@ return function (\Slim\App $app): void {
 
 
     $app->get('/prestations', gift\appli\controlers\GetPrestationAction::class);
+
+    $app->get('/categorie/{id}/prestations', gift\appli\controlers\GetPrestationsByCategorieAction::class);
 };
