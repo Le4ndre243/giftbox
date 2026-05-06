@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}GiftBox{% endblock %}</title>
+</head>
+<body>
+    <div class="grid-container">
+        <header>
+            <h1>GiftBox App</h1>
+        </header>
+
+        <nav>
+            <ul>
+{% for item in nav_menu %}
+                    <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+                {% endfor %}            </ul>
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <p>Footer</p>
+        </footer>
+    </div>
+</body>
+</html>
