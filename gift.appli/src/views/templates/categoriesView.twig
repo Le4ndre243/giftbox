@@ -1,0 +1,14 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Catégories</title>
+</head>
+<body>
+    <h1>Liste des catégories</h1>
+    <ul>
+        {% for cat in categories %}
+            <li><a href="/giftbox/categorie/{{ cat.id }}">{{ cat.id }} - {{ cat.libelle }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
