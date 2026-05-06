@@ -1,13 +1,14 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Categorie {{ id }}</title>
-</head>
-<body>
-    <h1>la Categorie {{ id }}</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie {{ id }}{% endblock %}
+
+{% block content %}
+    <h1>La Catégorie {{ id }}</h1>
     <h2>{{ libelle }}</h2>
-    <h2>{{ description }}</h2>
+    
+    <p>{{ description }}</p> 
+    
+    <br>
     <a href="/giftbox/categorie/{{ id }}/prestations">Voir les prestations →</a><br>
     <a href="/giftbox/categories">← Retour à la liste</a>
-</body>
-</html>
+{% endblock %}
