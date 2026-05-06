@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prestations - {{ categorie.libelle }}</title>
+</head>
+<body>
+    <h1>Prestations de la catégorie : {{ categorie.libelle }}</h1>
+    <ul>
+        {% for p in prestations %}
+            <li>
+                <a href="/giftbox/prestations?id={{ p.id }}">{{ p.libelle }}</a>
+                - {{ p.tarif }} €/{{ p.unite }}
+            </li>
+        {% else %}
+            <li>Aucune prestation pour cette catégorie.</li>
+        {% endfor %}
+    </ul>
+    <a href="/giftbox/categories">← Retour aux catégories</a>
+</body>
+</html>
