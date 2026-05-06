@@ -4,6 +4,8 @@ namespace gift\appli\controlers;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use gift\appli\models\Prestation;
+use Slim\Views\Twig;
+
 
 class GetPrestationAction{
 
@@ -21,26 +23,12 @@ class GetPrestationAction{
             throw new \Slim\Exception\HttpNotFoundException($rq, 'Prestation introuvable');
         }
 
-        $html = <<<HTML
-            <!DOCTYPE html>
-            <html lang="fr">
-            <head>
-                <meta charset="UTF-8">
-                <title>{$prestation->libelle}</title>
-            </head>
-            <body>
-                <h1>{$prestation->libelle}</h1>
-                <p>ID : {$prestation->id}</p>
-                <p>Description : {$prestation->description}</p>
-                <a href="/giftbox/categories">← Retour à la liste</a>
-            </body>
-            </html>
-            HTML;
 
-      $rs->getBody()->write($html);
-        return $rs; 
 
-        
+            $view = Twig::fromRequest($rq);
+        return $view->render($rs, 'prestationView.twig', ['prestation' => $prestation->toArray()]);
+
+
     }
     }
 
