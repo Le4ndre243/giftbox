@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Prestations - {{ categorie.libelle }}</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestations - {{ categorie.libelle }}{% endblock %}
+
+{% block content %}
     <h1>Prestations de la catégorie : {{ categorie.libelle }}</h1>
     <ul>
         {% for p in prestations %}
@@ -17,5 +15,4 @@
         {% endfor %}
     </ul>
     <a href="/giftbox/categorie/{{ categorie.id }}">← Retour à la catégorie</a>
-</body>
-</html>
+{% endblock %}
