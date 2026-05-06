@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ prestation.libelle }}</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ prestation.libelle }}{% endblock %}
+
+{% block content %}
     <h1>{{ prestation.libelle }}</h1>
     <p>ID : {{ prestation.id }}</p>
     <p>Description : {{ prestation.description }}</p>
     <a href="/giftbox/categorie/{{ categorie.id }}/prestations">← Retour aux prestations</a>
-</body>
-</html>
+{% endblock %}
