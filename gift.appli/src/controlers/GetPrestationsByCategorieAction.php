@@ -8,13 +8,12 @@ use gift\appli\models\Categorie;
 class GetPrestationsByCategorieAction {
 
     public function __invoke(Request $rq, Response $rs, array $args): Response {
-        $id = $args['id'] ?? null;
+        $id = $args['id'];
 
         try {
             $categorie = Categorie::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            $rs->getBody()->write("<h1>Catégorie introuvable : " . htmlspecialchars($id ?? '') . "</h1>");
-            return $rs->withHeader('Content-Type', 'text/html')->withStatus(404);
+            throw new \Slim\Exception\HttpNotFoundException($rq, 'Catégorie introuvable');
         }
 
         $prestations = $categorie->prestations;

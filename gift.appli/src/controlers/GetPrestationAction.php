@@ -11,11 +11,14 @@ class GetPrestationAction{
     public function __invoke(Request $rq, Response $rs, array $args): Response { 
                        $id = $rq->getQueryParams()['id'] ?? null;
 
-        try{
+        if ($id === null) {
+            throw new \Slim\Exception\HttpBadRequestException($rq, 'Paramètre id manquant');
+        }
+
+        try {
             $prestation = Prestation::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        $rs->getBody()->write("<h1>Prestation introuvable : " . ($id ?? 'Veuillez rentrer un id valide') . "</h1>");
-            return $rs->withHeader('Content-Type', 'text/html')->withStatus(404);
+            throw new \Slim\Exception\HttpNotFoundException($rq, 'Prestation introuvable');
         }
 
         $html = <<<HTML

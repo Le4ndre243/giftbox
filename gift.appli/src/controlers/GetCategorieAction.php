@@ -9,12 +9,15 @@ class GetCategorieAction{
 
 
     public function __invoke(Request $rq, Response $rs, array $args): Response { 
+                               $id = $args['id'] ?? null;
 
-        $categorie = Categorie::find($args['id']);
+        if ($id === null) {
+            throw new \Slim\Exception\HttpBadRequestException($rq, 'Paramètre id manquant');
+        }
 
+        $categorie = Categorie::find($id);
         if (!$categorie) {
-            $rs->getBody()->write('<h1>Catégorie introuvable</h1>');
-            return $rs->withHeader('Content-Type', 'text/html')->withStatus(404);
+            throw new \Slim\Exception\HttpNotFoundException($rq, 'Catégorie introuvable');
         }
 
         $html = <<<HTML

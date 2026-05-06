@@ -13,4 +13,6 @@ $app->setBasePath('/giftbox');
 $routes = require_once __DIR__ . '/routes.php';
 $routes($app);
 
+$app->addErrorMiddleware(true, true, true);
+
 return $app;

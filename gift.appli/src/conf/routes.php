@@ -12,11 +12,12 @@ return function (\Slim\App $app): void {
 
     $app->get('/categories',  gift\appli\controlers\GetCategoriesAction::class);
 
-    $app->get('/categorie/{id}', gift\appli\controlers\GetCategorieAction::class);
-
+    $app->get('/categorie[/{id}]', gift\appli\controlers\GetCategorieAction::class);
 
 
     $app->get('/prestations', gift\appli\controlers\GetPrestationAction::class);
 
     $app->get('/categorie/{id}/prestations', gift\appli\controlers\GetPrestationsByCategorieAction::class);
+
+
 };
