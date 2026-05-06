@@ -26,7 +26,10 @@ class GetPrestationAction{
 
 
             $view = Twig::fromRequest($rq);
-        return $view->render($rs, 'prestationView.twig', ['prestation' => $prestation->toArray()]);
+        return $view->render($rs, 'prestationView.twig', [
+            'prestation' => $prestation->toArray(),
+            'categorie'  => $prestation->categorie->toArray(),
+        ]);
 
 
     }
