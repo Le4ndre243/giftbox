@@ -18,8 +18,10 @@ $app->setBasePath($basePath);
 $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
+
     ['url' => $basePath . '/', 'label' => 'Accueil'],
     ['url' => $basePath . '/categories', 'label' => 'Lister les catégories']
+
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
 $twig->getEnvironment()->addGlobal('img_dir', $basePath . '/public/img');
