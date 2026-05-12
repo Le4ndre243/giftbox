@@ -20,7 +20,8 @@ $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 $twig->getEnvironment()->addGlobal('nav_menu', [
 
     ['url' => $basePath . '/', 'label' => 'Accueil'],
-    ['url' => $basePath . '/categories', 'label' => 'Lister les catégories']
+    ['url' => $basePath . '/prestations', 'label' => 'Toutes les prestations'],
+    ['url' => $basePath . '/categories', 'label' => 'Catégories']
 
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
