@@ -4,15 +4,18 @@
 
 {% block content %}
     <h1>Prestations de la catégorie : {{ categorie.libelle }}</h1>
-    <ul>
+    <div class="prestations-grid">
         {% for p in prestations %}
-            <li>
-                <a href="{{ url_for('prestation') }}?id={{ p.id }}">{{ p.libelle }}</a>
-                - {{ p.tarif }} €/{{ p.unite }}
-            </li>
+            <a class="prestation-card" href="{{ url_for('prestation', {id: p.id}) }}">
+                <img src="{{ img_dir }}/{{ p.img }}" alt="{{ p.libelle }}">
+                <div class="prestation-card-body">
+                    <h3>{{ p.libelle }}</h3>
+                    <p class="prestation-prix">{{ p.tarif }} € / {{ p.unite }}</p>
+                </div>
+            </a>
         {% else %}
-            <li>Aucune prestation pour cette catégorie.</li>
+            <p>Aucune prestation pour cette catégorie.</p>
         {% endfor %}
-    </ul>
-    <a href="{{ url_for('categorie', {id: categorie.id}) }}">← Retour à la catégorie</a>
+    </div>
+    <a href="{{ url_for('categories') }}">← Retour aux catégories</a>
 {% endblock %}
