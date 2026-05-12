@@ -1,14 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ma boîte à cadeau{% endblock %}
+{% block title %}{{ coffretType.libelle }} - Détail du coffret{% endblock %}
 
 {% block content %}
 
-<section class="categories">
-    <h2>Nos catégories de prestations</h2>
-    
+<section class="coffret-detail">
+    <h2>{{ coffretType.libelle }}</h2>
+
+    <div class="coffret-info">
+        {% if coffretType.description is defined and coffretType.description %}
+            <p class="coffret-description">{{ coffretType.description }}</p>
+        {% endif %}
+
+        {% if coffretType.tarif is defined %}
+            <p class="coffret-tarif"><strong>Tarif :</strong> {{ coffretType.tarif }} €</p>
+        {% endif %}
+    </div>
 </section>
 
+<section class="prestations">
+    <h3>Prestations incluses</h3>
 
+    {% if prestations is empty %}
+        <p>Aucune prestation associée à ce coffret.</p>
+    {% else %}
+        <ul class="prestations-list">
+            {% for prestation in prestations %}
+                <li class="prestation-item">
+                    <span class="prestation-libelle">{{ prestation.libelle }}</span>
+                    {% if prestation.description is defined and prestation.description %}
+                        <p class="prestation-description">{{ prestation.description }}</p>
+                    {% endif %}
+                    {% if prestation.tarif is defined %}
+                        <span class="prestation-tarif">{{ prestation.tarif }} €</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+
+<a href="{{ path_for('coffrets') }}">← Retour à la liste des coffrets</a>
 
 {% endblock %}
