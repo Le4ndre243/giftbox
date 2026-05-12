@@ -4,6 +4,7 @@ namespace gift\appli\controlers;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use gift\appli\models\CoffretType;
+
 use Slim\Views\Twig;
 
 class GetCoffretByIdAction {
