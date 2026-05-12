@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return function (\Slim\App $app): void {
   
-  $app->get('/home', gift\appli\controlers\GetHomeAction::class)
+      $app->get('/home', gift\appli\controlers\GetHomeAction::class)
         ->setName('home');
 
 
