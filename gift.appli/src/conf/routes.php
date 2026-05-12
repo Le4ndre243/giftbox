@@ -14,6 +14,9 @@ return function (\Slim\App $app): void {
     $app->get('/categorie[/{id}]', gift\appli\controlers\GetCategorieAction::class)
         ->setName('categorie');
 
+    $app->get('/coffretType', gift\appli\controlers\GetCoffretTypeAction::class)
+        ->setName('coffretType');
+
     $app->get('/prestations', gift\appli\controlers\GetPrestationAction::class)
         ->setName('prestation');
 

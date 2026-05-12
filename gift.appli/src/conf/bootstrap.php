@@ -22,7 +22,9 @@ $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
     ['url' => $basePath . '/', 'label' => 'Accueil'],
-    ['url' => $basePath . '/categories', 'label' => 'Lister les catégories']
+    ['url' => $basePath . '/categories', 'label' => 'Lister les catégories'],
+    ['url' => $basePath . '/coffretType', 'label' => 'Liste des coffrets types']
+
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
 $twig->getEnvironment()->addGlobal('img_dir', $basePath . '/public/img');
