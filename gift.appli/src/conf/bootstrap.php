@@ -15,7 +15,7 @@ $app->setBasePath('/giftbox');
 $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
-    ['url' => '/giftbox/home', 'label' => 'Accueil'],
+    ['url' => '/giftbox/', 'label' => 'Accueil'],
     ['url' => '/giftbox/categories', 'label' => 'Lister les catégories']
 
 ]);
