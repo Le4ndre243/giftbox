@@ -6,7 +6,7 @@
 
 <h1>Liste Coffret Type</h1>
 
-<ul>
+<ul class="categories-list">
         {% for coffre in coffretType %}
             <li>
                 <a href="{{ url_for('coffret_by_id', {id : coffre.id}) }}">{{coffre.libelle}}</a>
