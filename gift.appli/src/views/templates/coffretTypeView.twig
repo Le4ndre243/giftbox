@@ -9,7 +9,7 @@
 <ul>
         {% for coffre in coffretType %}
             <li>
-                <p>{{coffre.libelle}}</p>
+                <a href="{{ url_for('coffret_by_id', {id : coffre.id}) }}">{{coffre.libelle}}</a>
             </li>
         {% endfor %}
     </ul>
