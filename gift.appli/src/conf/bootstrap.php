@@ -11,10 +11,7 @@ Eloquent::init(__DIR__ . '/db.ini');
 
 $app = AppFactory::create();
 
-// Détection automatique de l'environnement
-$basePath = $_SERVER['SERVER_NAME'] === 'localhost'
-    ? '/giftbox/gift.appli'
-    : '/giftbox';
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $app->setBasePath($basePath);
 
 // src/conf/../../src/views/templates = src/views/templates
