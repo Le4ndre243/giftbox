@@ -5,6 +5,7 @@
     <title>{% block title %}GiftBox{% endblock %}</title>
     <link rel="stylesheet" href="{{ css_dir }}/style.css">
 </head>
+
 <body>
     <div class="grid-container">
         <header>
@@ -18,10 +19,13 @@
                 {% endfor %}            </ul>
         </nav>
 
+        <hr>
         <main>
             {% block content %}
             {% endblock %}
         </main>
+
+        <hr>
 
         <footer>
             <p>ANTZORN Hugo     -    BOUDOUAH Ilias     -    AIME--CABOCEL Léandre</p>
