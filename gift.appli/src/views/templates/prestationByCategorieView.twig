@@ -7,12 +7,12 @@
     <ul>
         {% for p in prestations %}
             <li>
-                <a href="/giftbox/prestations?id={{ p.id }}">{{ p.libelle }}</a>
+                <a href="{{ url_for('prestation') }}?id={{ p.id }}">{{ p.libelle }}</a>
                 - {{ p.tarif }} €/{{ p.unite }}
             </li>
         {% else %}
             <li>Aucune prestation pour cette catégorie.</li>
         {% endfor %}
     </ul>
-    <a href="/giftbox/categorie/{{ categorie.id }}">← Retour à la catégorie</a>
+    <a href="{{ url_for('categorie', {id: categorie.id}) }}">← Retour à la catégorie</a>
 {% endblock %}

@@ -9,6 +9,6 @@
     <p>{{ description }}</p> 
     
     <br>
-    <a href="/giftbox/categorie/{{ id }}/prestations">Voir les prestations →</a><br>
-    <a href="/giftbox/categories">← Retour à la liste</a>
+    <a href="{{ url_for('prestations_by_categorie', {id: id}) }}">Voir les prestations →</a><br>
+    <a href="{{ url_for('categories') }}">← Retour à la liste</a>
 {% endblock %}

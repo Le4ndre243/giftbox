@@ -17,6 +17,8 @@ $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 $twig->getEnvironment()->addGlobal('nav_menu', [
     ['url' => '/giftbox/categories', 'label' => 'Lister les catégories']
 ]);
+$twig->getEnvironment()->addGlobal('css_dir', '/giftbox/css');
+$twig->getEnvironment()->addGlobal('img_dir', '/giftbox/img');
 
 $app->add(TwigMiddleware::create($app, $twig));
 

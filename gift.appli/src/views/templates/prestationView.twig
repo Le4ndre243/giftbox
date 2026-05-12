@@ -6,5 +6,5 @@
     <h1>{{ prestation.libelle }}</h1>
     <p>ID : {{ prestation.id }}</p>
     <p>Description : {{ prestation.description }}</p>
-    <a href="/giftbox/categorie/{{ categorie.id }}/prestations">← Retour aux prestations</a>
+    <a href="{{ url_for('prestations_by_categorie', {id: categorie.id}) }}">← Retour aux prestations</a>
 {% endblock %}
