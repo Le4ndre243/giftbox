@@ -3,8 +3,14 @@
 {% block title %}{{ prestation.libelle }}{% endblock %}
 
 {% block content %}
-    <h1>{{ prestation.libelle }}</h1>
-    <p>ID : {{ prestation.id }}</p>
-    <p>Description : {{ prestation.description }}</p>
-    <a href="{{ url_for('prestations_by_categorie', {id: categorie.id}) }}">← Retour aux prestations</a>
+    <div class="prestation-detail">
+        <img class="prestation-detail-img" src="{{ img_dir }}/{{ prestation.img }}" alt="{{ prestation.libelle }}">
+        <div class="prestation-detail-info">
+            <h1>{{ prestation.libelle }}</h1>
+            <p class="prestation-cat">Catégorie : <a href="{{ url_for('prestations_by_categorie', {id: categorie.id}) }}">{{ categorie.libelle }}</a></p>
+            <p>{{ prestation.description }}</p>
+            <p class="prestation-prix"><strong>{{ prestation.tarif }} €</strong> / {{ prestation.unite }}</p>
+        </div>
+    </div>
+    <a href="{{ url_for('prestations_by_categorie', {id: categorie.id}) }}">← Retour aux prestations de cette catégorie</a>
 {% endblock %}

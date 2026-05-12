@@ -10,8 +10,8 @@ use Slim\Views\Twig;
 class GetPrestationAction{
 
 
-    public function __invoke(Request $rq, Response $rs, array $args): Response { 
-                       $id = $rq->getQueryParams()['id'] ?? null;
+    public function __invoke(Request $rq, Response $rs, array $args): Response {
+        $id = $args['id'] ?? null;
 
         if ($id === null) {
             throw new \Slim\Exception\HttpBadRequestException($rq, 'Paramètre id manquant');

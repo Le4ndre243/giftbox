@@ -4,10 +4,10 @@
 
 {% block content %}
     <h1>Liste des catégories</h1>
-    <ul>
+    <ul class="categories-list">
         {% for cat in categories %}
             <li>
-                <a href="{{ url_for('categorie', {id: cat.id}) }}">{{ cat.id }} - {{ cat.libelle }}</a>
+                <a href="{{ url_for('prestations_by_categorie', {id: cat.id}) }}">{{ cat.libelle }}</a>
             </li>
         {% endfor %}
     </ul>

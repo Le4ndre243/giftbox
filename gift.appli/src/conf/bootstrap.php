@@ -11,19 +11,19 @@ Eloquent::init(__DIR__ . '/db.ini');
 
 $app = AppFactory::create();
 
-// Détection automatique de l'environnement
-$basePath = $_SERVER['SERVER_NAME'] === 'localhost'
-    ? '/giftbox/gift.appli'
-    : '/giftbox';
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $app->setBasePath($basePath);
 
 // src/conf/../../src/views/templates = src/views/templates
 $twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
+
     ['url' => $basePath . '/', 'label' => 'Accueil'],
-    ['url' => $basePath . '/categories', 'label' => 'Lister les catégories'],
+    ['url' => $basePath . '/prestations', 'label' => 'Toutes les prestations'],
+    ['url' => $basePath . '/categories', 'label' => 'Catégories'],
     ['url' => $basePath . '/coffretType', 'label' => 'Liste des coffrets types']
+
 
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');

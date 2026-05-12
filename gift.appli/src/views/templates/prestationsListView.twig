@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prestations - {{ categorie.libelle }}{% endblock %}
+{% block title %}Toutes les prestations{% endblock %}
 
 {% block content %}
-    <h1>Prestations de la catégorie : {{ categorie.libelle }}</h1>
+    <h1>Liste des prestations</h1>
     <div class="prestations-grid">
         {% for p in prestations %}
             <a class="prestation-card" href="{{ url_for('prestation', {id: p.id}) }}">
@@ -11,11 +11,11 @@
                 <div class="prestation-card-body">
                     <h3>{{ p.libelle }}</h3>
                     <p class="prestation-prix">{{ p.tarif }} € / {{ p.unite }}</p>
+                    <p class="prestation-cat">{{ p.categorie.libelle }}</p>
                 </div>
             </a>
         {% else %}
-            <p>Aucune prestation pour cette catégorie.</p>
+            <p>Aucune prestation disponible.</p>
         {% endfor %}
     </div>
-    <a href="{{ url_for('categories') }}">← Retour aux catégories</a>
 {% endblock %}
