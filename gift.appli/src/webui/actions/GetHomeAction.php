@@ -1,5 +1,5 @@
 <?php
-namespace gift\appli\controlers; 
+namespace gift\appli\webui\actions;
 
 
 use \Psr\Http\Message\ServerRequestInterface as Request;

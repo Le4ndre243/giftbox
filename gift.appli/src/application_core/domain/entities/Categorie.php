@@ -1,7 +1,7 @@
 <?php
-namespace gift\appli\models;
+namespace gift\appli\application_core\domain\entities;
 use Illuminate\Database\Eloquent\Model;
-use gift\appli\models\Prestation;
+use gift\appli\application_core\domain\entities\Prestation;
 
 class Categorie extends Model {
     protected $table = 'categorie';

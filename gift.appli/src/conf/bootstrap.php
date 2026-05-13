@@ -2,7 +2,7 @@
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
-use gift\appli\utils\Eloquent;
+use gift\appli\infrastructure\Eloquent;
 
 session_start();
 
@@ -15,7 +15,7 @@ $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 $app->setBasePath($basePath);
 
 // src/conf/../../src/views/templates = src/views/templates
-$twig = Twig::create(__DIR__ . '/../views/templates', ['cache' => false]);
+$twig = Twig::create(__DIR__ . '/../webui/views/', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
 

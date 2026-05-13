@@ -1,10 +1,10 @@
 <?php
-namespace gift\appli\controlers; 
+namespace gift\appli\webui\actions;
 
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use gift\appli\models\Categorie;
+use gift\appli\application_core\domain\entities\Categorie;
 use Slim\Views\Twig;
 
 
