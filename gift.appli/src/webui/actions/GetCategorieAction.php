@@ -3,7 +3,7 @@ namespace gift\appli\webui\actions;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use gift\appli\application_core\domain\entities\Categorie;
+use gift\appli\application_core\application\useCases\CatalogueService;
 use Slim\Views\Twig;
 
 class GetCategorieAction {
@@ -15,12 +15,13 @@ class GetCategorieAction {
             throw new \Slim\Exception\HttpBadRequestException($rq, 'Paramètre id manquant');
         }
 
-        $categorie = Categorie::find($id);
+        $service = new CatalogueService();  
+        $categorie = $service->getCategorieById($id);
         if (!$categorie) {
             throw new \Slim\Exception\HttpNotFoundException($rq, 'Catégorie introuvable');
         }
 
         $view = Twig::fromRequest($rq);
-        return $view->render($rs, 'categorieView.twig', $categorie->toArray());
+        return $view->render($rs, 'categorieView.twig', ['categorie' => $categorie]);
     }
 }

@@ -3,7 +3,7 @@ namespace gift\appli\webui\actions;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use gift\appli\application_core\domain\entities\Prestation;
+use gift\appli\application_core\application\useCases\CatalogueService;
 use Slim\Views\Twig;
 
 
@@ -18,7 +18,8 @@ class GetPrestationAction{
         }
 
         try {
-            $prestation = Prestation::findOrFail($id);
+            $catalogueService = new CatalogueService();
+            $prestation = $catalogueService->getPrestationById($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new \Slim\Exception\HttpNotFoundException($rq, 'Prestation introuvable');
         }
@@ -27,8 +28,8 @@ class GetPrestationAction{
 
             $view = Twig::fromRequest($rq);
         return $view->render($rs, 'prestationView.twig', [
-            'prestation' => $prestation->toArray(),
-            'categorie'  => $prestation->categorie->toArray(),
+            'prestation' => $prestation,
+            'categorie'  => $prestation['categorie'],
         ]);
 
 

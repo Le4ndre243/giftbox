@@ -3,7 +3,7 @@ namespace gift\appli\webui\actions;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use gift\appli\application_core\domain\entities\CoffretType;
+use gift\appli\application_core\application\useCases\CatalogueService;
 
 use Slim\Views\Twig;
 
@@ -13,15 +13,16 @@ class GetCoffretByIdAction {
         $id = $args['id'];
 
         try {
-            $coffretType = CoffretType::findOrFail($id);
+            $catalogueService = new CatalogueService();
+            $coffret = $catalogueService->getCoffretById($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new \Slim\Exception\HttpNotFoundException($rq, 'Coffret introuvable');
         }
 
         $view = Twig::fromRequest($rq);
         return $view->render($rs, 'coffretByIdView.twig', [
-            'coffretType' => $coffretType->toArray(),
-            'prestations'  => $coffretType->prestations->toArray(),
+            'coffretType' => $coffret['coffretType'],
+            'prestations'  => $coffret['prestations'],
         ]);
 
     }
