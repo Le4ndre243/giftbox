@@ -4,19 +4,24 @@ namespace gift\appli\webui\actions;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use gift\appli\application_core\application\useCases\CatalogueService;
+use gift\appli\application_core\application\exceptions\EntityNotFoundException;
 use Slim\Views\Twig;
 
 class GetPrestationsByCategorieAction {
 
     public function __invoke(Request $rq, Response $rs, array $args): Response {
-        $id = $args['id'];
+        $id = $args['id'] ?? null;
+
+        if ($id === null) {
+            throw new \Slim\Exception\HttpBadRequestException($rq, 'Paramètre id manquant');
+        }
 
         try {
             $catalogueService = new CatalogueService();
-            $categorie = $catalogueService->getCategorieById($id);
+            $categorie   = $catalogueService->getCategorieById((int) $id);
             $prestations = $catalogueService->getPrestationsbyCategorie((int) $id);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            throw new \Slim\Exception\HttpNotFoundException($rq, 'Catégorie introuvable');
+        } catch (EntityNotFoundException $e) {
+            throw new \Slim\Exception\HttpNotFoundException($rq, $e->getMessage());
         }
 
         $view = Twig::fromRequest($rq);
@@ -24,6 +29,5 @@ class GetPrestationsByCategorieAction {
             'categorie'   => $categorie,
             'prestations' => $prestations,
         ]);
-
     }
 }
