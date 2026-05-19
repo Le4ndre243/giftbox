@@ -35,4 +35,7 @@ return function (\Slim\App $app): void {
     $app->get('/box/access/{token}', gift\appli\webui\actions\GetBoxByTokenAction::class)
         ->setName('boxByToken');
 
+    $app->get('/box/{id}/token', gift\appli\webui\actions\GenerateTokenAction::class)
+        ->setName('generateToken');
+
 };
