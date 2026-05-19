@@ -3,7 +3,6 @@ namespace gift\appli\webui\actions;
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use gift\appli\application_core\application\useCases\CatalogueService;
 use gift\appli\application_core\application\exceptions\EntityNotFoundException;
 use Slim\Views\Twig;
 use gift\appli\application_core\domain\entities\Box;
@@ -18,9 +17,7 @@ class getBoxById{
     }
     
     try {
-            $box = Box::find($id);
-            $prestation = $box->prestations;
-
+            $box = Box::with('prestations')->findOrFail($id);
         } catch (EntityNotFoundException $e) {
             throw new \Slim\Exception\HttpNotFoundException($rq, $e->getMessage());
         } catch (\Exception $e) {
@@ -28,8 +25,6 @@ class getBoxById{
         }
 
         $view = Twig::fromRequest($rq);
-        return $view->render($rs, 'boxView.twig', ['contenu' => $prestation]);
+        return $view->render($rs, 'boxView.twig', ['box' => $box->toArray()]);
     }
 }
-
-?>
