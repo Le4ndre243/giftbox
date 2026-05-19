@@ -4,6 +4,7 @@ namespace gift\appli\application_core\application\useCases;
 use gift\appli\application_core\application\useCases\BoxInterface;
 use gift\appli\application_core\domain\entities\Box;
 use gift\appli\application_core\application\exceptions\EntityNotFoundException;
+use gift\appli\application_core\application\exceptions\BoxNotPaidException;
 
 class BoxService implements BoxInterface {
 
@@ -20,7 +21,7 @@ class BoxService implements BoxInterface {
                 Box::where('id', $box_id)->update(['token' => $token]);
                 return $token;
             }
-            return "";
+            throw new BoxNotPaidException('La box n\'est pas encore payé');
         } catch (\Exception $e) {
             throw new EntityNotFoundException("Box introuvable pour l'ID fourni");
         }
@@ -28,7 +29,7 @@ class BoxService implements BoxInterface {
 
     public function getBoxByToken(string $token): array{
         try {
-            return Box::where('token', $token)->firstOrFail()->toArray();   
+            return Box::with('prestations')->where('token', $token)->firstOrFail()->toArray();   
         } catch (\Exception $e) {
             throw new EntityNotFoundException("Box introuvable pour le token fourni");
         }
