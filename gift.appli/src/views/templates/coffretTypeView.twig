@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coffret Type{% endblock %}
+
+{% block content %}
+
+<h1>Liste Coffret Type</h1>
+
+<ul>
+        {% for coffre in coffretType %}
+            <li>
+                <p>{{coffre.libelle}}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
