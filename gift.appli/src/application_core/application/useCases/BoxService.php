@@ -21,9 +21,9 @@ class BoxService implements BoxInterface {
                 Box::where('id', $box_id)->update(['token' => $token]);
                 return $token;
             }
-            throw new BoxNotPaidException('La box n\'est pas encore payé');
+            throw new BoxNotPaidException($box_id);
         } catch (\Exception $e) {
-            throw new EntityNotFoundException("Box introuvable pour l'ID fourni");
+            throw new EntityNotFoundException("Box", $box_id);
         }
     }
 
@@ -31,7 +31,7 @@ class BoxService implements BoxInterface {
         try {
             return Box::with('prestations')->where('token', $token)->firstOrFail()->toArray();   
         } catch (\Exception $e) {
-            throw new EntityNotFoundException("Box introuvable pour le token fourni");
+            throw new EntityNotFoundException("Box", $token);
         }
     }
 
@@ -39,7 +39,7 @@ class BoxService implements BoxInterface {
         try {
             return Box::findOrFail($box_id);
         } catch (\Exception $e) {
-            throw new EntityNotFoundException("Box introuvable pour l'ID fourni");
+            throw new EntityNotFoundException("Box", $box_id);
         }
     }
 }

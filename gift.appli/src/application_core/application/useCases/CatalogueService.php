@@ -17,7 +17,7 @@ class CatalogueService implements CatalogueInterface {
         try {
             return Categorie::findOrFail($id)->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            throw new EntityNotFoundException("Catégorie $id introuvable");
+            throw new EntityNotFoundException("Catégorie", $id);
         }
     }
 
@@ -29,7 +29,7 @@ class CatalogueService implements CatalogueInterface {
         try {
             return Prestation::with('categorie')->findOrFail($id)->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            throw new EntityNotFoundException("Prestation $id introuvable");
+            throw new EntityNotFoundException("Prestation", $id);
         }
     }
 
@@ -37,7 +37,7 @@ class CatalogueService implements CatalogueInterface {
         try {
             return Categorie::findOrFail($categ_id)->prestations()->get()->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            throw new EntityNotFoundException("Catégorie $categ_id introuvable");
+            throw new EntityNotFoundException("Catégorie", $categ_id);
         }
     }
 
@@ -53,7 +53,7 @@ class CatalogueService implements CatalogueInterface {
                 'prestations' => $coffret->prestations->toArray(),
             ];
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            throw new EntityNotFoundException("Coffret $id introuvable");
+            throw new EntityNotFoundException("Coffret", $id);
         }
     }
 }
