@@ -29,4 +29,7 @@ return function (\Slim\App $app): void {
     $app->get('/coffretType/{id}', gift\appli\webui\actions\GetCoffretByIdAction::class)
         ->setName('coffret_by_id');
 
+    $app->get('/box/{id}', gift\appli\webui\actions\GetBoxById::class)
+        ->setName('boxById');
+
 };
