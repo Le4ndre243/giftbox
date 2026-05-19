@@ -17,7 +17,6 @@ class CatalogueService implements CatalogueInterface {
         try {
             return Categorie::findOrFail($id)->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // ✅ L'exception ORM est interceptée ici et transformée en exception métier
             throw new EntityNotFoundException("Catégorie $id introuvable");
         }
     }

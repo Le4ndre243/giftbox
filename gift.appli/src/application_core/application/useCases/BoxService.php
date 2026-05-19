@@ -2,6 +2,8 @@
 
 namespace gift\appli\application_core\application\useCases;
 use gift\appli\application_core\application\useCases\BoxInterface;
+use gift\appli\application_core\domain\entities\Box;
+use gift\appli\application_core\application\exceptions\EntityNotFoundException;
 
 class BoxService implements BoxInterface {
 
@@ -13,11 +15,12 @@ class BoxService implements BoxInterface {
                 if($box->token != null) {
                     return $box->token; 
                 }
-                $token = bin2hex(random_bytes(16)); e
+                $token = bin2hex(random_bytes(16)); 
                 $box->token = $token;
-                $box->save();
+                Box::where('id', $box_id)->update(['token' => $token]);
                 return $token;
             }
+            return "";
         } catch (\Exception $e) {
             throw new EntityNotFoundException("Box introuvable pour l'ID fourni");
         }
