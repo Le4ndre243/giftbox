@@ -32,4 +32,7 @@ return function (\Slim\App $app): void {
     $app->get('/box/{id}', gift\appli\webui\actions\GetBoxById::class)
         ->setName('boxById');
 
+    $app->get('/box/access/{token}', gift\appli\webui\actions\GetBoxByTokenAction::class)
+        ->setName('boxByToken');
+
 };
