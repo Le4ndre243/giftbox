@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Box{% endblock %}
+
+{% block content %}
+    <h1>Affichage d'une box</h1>
+    <ul class="box">
+        {% for presta in contenu %}
+            <li>
+                <a href="{{ url_for('prestation', {id: presta.id}) }}">{{ presta.libelle }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
