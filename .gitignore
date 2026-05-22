@@ -12,4 +12,4 @@ composer.lock
 .ini
 db.ini
 gift.db.conf.ini
-*.htaccess
+
