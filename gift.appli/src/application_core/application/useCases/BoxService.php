@@ -35,7 +35,7 @@ class BoxService implements BoxInterface {
         }
     }
 
-    public function findBoxById(string $box_id): BoxInterface{
+    public function findBoxById(string $box_id): Box{
         try {
             return Box::findOrFail($box_id);
         } catch (\Exception $e) {

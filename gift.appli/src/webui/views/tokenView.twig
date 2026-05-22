@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}URL d'accès{% endblock %}
+
+{% block content %}
+    <h1>URL d'accès à la box</h1>
+    <p>Voici l'URL à partager pour accéder à la box :</p>
+    <a href="{{ base_path }}/box/access/{{ token }}">
+        {{ base_path }}/box/access/{{ token }}
+    </a>
+{% endblock %}
