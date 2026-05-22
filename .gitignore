@@ -1,6 +1,5 @@
 /vendor
 /node_modules
-.env
 .env.local
 *.log
 /storage/*.key
@@ -8,10 +7,8 @@
 .DS_Store
 vendor/
 composer.lock
-.env
 gift.db.conf.ini
 *.htaccess
-.env
 compose.yml
 .ini
 db.ini
