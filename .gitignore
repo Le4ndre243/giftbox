@@ -13,3 +13,5 @@ gift.db.conf.ini
 *.htaccess
 .env
 compose.yml
+.ini
+db.ini
