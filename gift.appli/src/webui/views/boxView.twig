@@ -36,6 +36,8 @@
 {% endif %}
             <button onclick="window.print()">Imprimer</button>
             {%if box.statut === 1%}
-                <button onclick={url_for('validate', {id: box.id})}>Valider</button>
+                <a href="{{ url_for('validateBox', {id: box.id}) }}">
+                    <button type="button">Valider</button>
+                </a>
             {%endif%}
 {% endblock %}
