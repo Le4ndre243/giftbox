@@ -5,9 +5,13 @@
 
 ## Démarrage
 
-1. Remplir le fichier `.env` avec vos identifiants (mêmes valeurs que dans `db.ini`)
-
-2. Lancer les services :
+1. Créer le fichier `.env` et le remplir avec vos identifiants (mêmes valeurs que dans `db.ini`)
+```bash
+DB_USER=    
+DB_PASSWORD=
+DB_NAME=giftbox
+```
+3. Lancer les services :
 ```bash
 docker compose up -d
 ```
