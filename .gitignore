@@ -9,7 +9,7 @@
 vendor/
 composer.lock
 .env
-.ini
-db.ini
 gift.db.conf.ini
-
+*.htaccess
+.env
+compose.yml
