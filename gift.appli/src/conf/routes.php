@@ -44,4 +44,6 @@ return function (\Slim\App $app): void {
     $app->get('/themes', gift\appli\webui\actions\GetThemesAction::class)
         ->setName('themes');    
 
+    $app->get('/themes/{id}', gift\appli\webui\actions\GetCoffretsByThemeAction::class)
+        ->setName('theme');
 };

@@ -61,4 +61,12 @@ class CatalogueService implements CatalogueInterface {
     public function getThemes(): array {
         return Theme::all()->toArray();
     }
+
+    public function getCoffretsByTheme(int $id): array {
+        try {
+            return CoffretType::with('theme')->where('theme_id', $id)->get()->toArray();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new EntityNotFoundException("Theme", $id);
+        }
+    }
 }

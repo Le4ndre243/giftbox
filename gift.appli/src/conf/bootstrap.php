@@ -22,7 +22,8 @@ $twig->getEnvironment()->addGlobal('nav_menu', [
     ['url' => $basePath . '/', 'label' => 'Accueil'],
     ['url' => $basePath . '/prestations', 'label' => 'Toutes les prestations'],
     ['url' => $basePath . '/categories', 'label' => 'Catégories'],
-    ['url' => $basePath . '/coffretType', 'label' => 'Liste des coffrets types']
+    ['url' => $basePath . '/coffretType', 'label' => 'Liste des coffrets types'],
+    ['url' => $basePath . '/themes', 'label' => 'Liste des themes']
 
 
 ]);

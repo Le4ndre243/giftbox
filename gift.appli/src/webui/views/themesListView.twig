@@ -7,7 +7,7 @@
     <ul class="categories-list">
         {% for them in themes %}
             <li>
-                <a href="{{ url_for('prestations_by_categorie', {id: them.id}) }}">{{ them.libelle }}</a>
+                <a href="{{ url_for('theme', {id: them.id}) }}">{{them.libelle }}</a>
             </li>
         {% endfor %}
     </ul>
