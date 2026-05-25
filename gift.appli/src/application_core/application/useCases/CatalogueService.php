@@ -5,6 +5,7 @@ namespace gift\appli\application_core\application\useCases;
 use gift\appli\application_core\domain\entities\Categorie;
 use gift\appli\application_core\domain\entities\Prestation;
 use gift\appli\application_core\domain\entities\CoffretType;
+use gift\appli\application_core\domain\entities\Theme;
 use gift\appli\application_core\application\exceptions\EntityNotFoundException;
 
 class CatalogueService implements CatalogueInterface {
@@ -55,5 +56,9 @@ class CatalogueService implements CatalogueInterface {
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new EntityNotFoundException("Coffret", $id);
         }
+    }
+
+    public function getThemes(): array {
+        return Theme::all()->toArray();
     }
 }

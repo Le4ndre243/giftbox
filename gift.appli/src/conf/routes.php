@@ -41,4 +41,7 @@ return function (\Slim\App $app): void {
     $app->get('/validate/{id}', gift\appli\webui\actions\ValidateBoxAction::class)
         ->setName('validateBox');
 
+    $app->get('/themes', gift\appli\webui\actions\GetThemesAction::class)
+        ->setName('themes');    
+
 };
