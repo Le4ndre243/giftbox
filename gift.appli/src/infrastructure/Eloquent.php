@@ -9,7 +9,7 @@
 
 namespace gift\appli\infrastructure;
 
-use Illuminate\Database\Capsule\Manager as DB ;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class Eloquent
 {
@@ -20,7 +20,12 @@ class Eloquent
 
 
         $db = new DB();
-        $db->addConnection(parse_ini_file($filename));
+        $config = parse_ini_file($filename);
+        // Accept both 'dbname' (existing config) and 'database' (Illuminate expected key)
+        if (isset($config['dbname']) && !isset($config['database'])) {
+            $config['database'] = $config['dbname'];
+        }
+        $db->addConnection($config);
         $db->setAsGlobal();
         $db->bootEloquent();
 

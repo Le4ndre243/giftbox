@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation d'une box{% endblock %}
+
+{% block content %}
+        <form>
+            <label for="name">Nom de la box :</label><br>
+            <input type="text" id="name" name="name"><br>
+
+            <label for="desc">Description de la box :</label><br>
+            <input type="text" id="desc" name="desc"><br>
+
+            <label for="giftcheckbox">La box est un cadeau ?</label>
+            <input type="checkbox" id="giftcheckbox" name="giftcheckbox" value="gift?"><br>
+
+            <label for="giftmess">Message du cadeau :</label><br>
+            <input type="text" id="giftmess" name="giftmess"><br>
+
+        </form>
+{% endblock %}
