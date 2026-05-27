@@ -7,16 +7,19 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 
             <label for="name">Nom de la box :</label><br>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" value="{{ prefill_name|default('') }}" required><br>
 
             <label for="desc">Description de la box :</label><br>
-            <input type="text" id="desc" name="desc"><br>
+            <textarea id="desc" name="desc">{{ prefill_desc|default('') }}</textarea><br>
 
             <label for="giftcheckbox">La box est un cadeau ?</label>
-            <input type="checkbox" id="giftcheckbox" name="giftcheckbox" value="1"><br>
+            <input type="checkbox" id="giftcheckbox" name="giftcheckbox" value="1"
+                   onchange="document.getElementById('gift-message').style.display = this.checked ? 'block' : 'none'"><br>
 
-            <label for="giftmess">Message du cadeau :</label><br>
-            <input type="text" id="giftmess" name="giftmess"><br>
+            <div id="gift-message" style="display:none">
+                <label for="giftmess">Message du cadeau :</label><br>
+                <input type="text" id="giftmess" name="giftmess"><br>
+            </div>
 
             <br>
             <button type="submit">Créer la box</button>

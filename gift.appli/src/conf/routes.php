@@ -34,6 +34,9 @@ return function (\Slim\App $app): void {
     $app->get('/box/create', gift\appli\webui\actions\GetCreateBoxAction::class)
         ->setName('boxCreate');
 
+    $app->get('/coffretType/{id}/box/create', gift\appli\webui\actions\GetCreateBoxFromCoffretAction::class)
+        ->setName('boxCreateFromCoffret');
+
     $app->post('/box/create', gift\appli\webui\actions\PostCreateBoxAction::class)
         ->setName('postBoxCreate');
 
