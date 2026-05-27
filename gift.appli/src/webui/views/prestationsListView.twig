@@ -15,9 +15,11 @@
                         <p class="prestation-cat">{{ p.categorie.libelle }}</p>
                     </div>
                 </a>
-                <form action="{{ url_for('addPrestation', {id: p.id}) }}" method="post">
-                    <button type="submit">Ajouter à ma box</button>
-                </form>
+                {% if current_box_id and current_box_statut == 1 %}
+                    <form action="{{ url_for('addPrestation', {id: p.id}) }}" method="post">
+                        <button type="submit">Ajouter à ma box</button>
+                    </form>
+                {% endif %}
             </div>
         {% else %}
             <p>Aucune prestation disponible.</p>

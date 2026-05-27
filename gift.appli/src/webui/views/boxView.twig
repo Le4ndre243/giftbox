@@ -4,9 +4,14 @@
 
 {% block content %}
     <h1>{{box.libelle}}</h1>
+    {% if box.statut == 1 %}
+        <p>État : <strong>En cours</strong></p>
+    {% elseif box.statut == 2 %}
+        <p>État : <strong>Validée</strong></p>
+    {% endif %}
     {% if box.kdo == 1 %}
-    <p><em>{{ box.message_kdo }}</em></p>
-{% endif %}
+        <p><em>{{ box.message_kdo }}</em></p>
+    {% endif %}
 
     <div class="prestations-grid">
         {% for presta in box.prestations %}
@@ -30,10 +35,13 @@
         {% endfor %}
         <p><strong>Total : {{ total|number_format(2, ',', ' ') }}€</strong></p>
     {% endif %}
-            <button onclick="window.print()">Imprimer</button>
-            {%if box.statut === 1%}
-                <a href="{{ url_for('validateBox', {id: box.id}) }}">
-                    <button type="button">Valider</button>
-                </a>
-            {%endif%}
+    {% if box.statut == 1 %}
+        <a href="{{ url_for('prestations') }}">← Continuer à ajouter des prestations</a>
+    {% endif %}
+    <button onclick="window.print()">Imprimer</button>
+    {% if box.statut == 1 %}
+        <a href="{{ url_for('validateBox', {id: box.id}) }}">
+            <button type="button">Valider</button>
+        </a>
+    {% endif %}
 {% endblock %}

@@ -12,8 +12,10 @@
             <p class="prestation-prix"><strong>{{ prestation.tarif }} €</strong> / {{ prestation.unite }}</p>
         </div>
     </div>
-    <form action="{{ url_for('addPrestation', {id: prestation.id}) }}" method="post">
-        <button type="submit">Ajouter à ma box</button>
-    </form>
+    {% if current_box_id and current_box_statut == 1 %}
+        <form action="{{ url_for('addPrestation', {id: prestation.id}) }}" method="post">
+            <button type="submit">Ajouter à ma box</button>
+        </form>
+    {% endif %}
     <a href="{{ url_for('prestations_by_categorie', {id: categorie.id}) }}">← Retour aux prestations de cette catégorie</a>
 {% endblock %}

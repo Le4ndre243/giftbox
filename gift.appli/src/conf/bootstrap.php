@@ -29,7 +29,17 @@ $twig->getEnvironment()->addGlobal('nav_menu', [
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
 $twig->getEnvironment()->addGlobal('img_dir', $basePath . '/public/img');
-$twig->getEnvironment()->addGlobal('current_box_id', $_SESSION['current_box_id'] ?? null);
+$current_box_id = $_SESSION['current_box_id'] ?? null;
+$twig->getEnvironment()->addGlobal('current_box_id', $current_box_id);
+
+$current_box_statut = null;
+if ($current_box_id) {
+    try {
+        $currentBox = \gift\appli\application_core\domain\entities\Box::find($current_box_id);
+        $current_box_statut = $currentBox ? $currentBox->statut : null;
+    } catch (\Exception $e) {}
+}
+$twig->getEnvironment()->addGlobal('current_box_statut', $current_box_statut);
 $app->add(TwigMiddleware::create($app, $twig));
 
 // src/conf/routes.php
