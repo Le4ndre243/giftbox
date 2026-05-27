@@ -20,6 +20,8 @@ class PostCreateBoxAction
         $service = new BoxService();
         $box = $service->createBox($libelle, $description, $kdo, $message_kdo);
 
+        $_SESSION['current_box_id'] = $box->id;
+
         $routeParser = RouteContext::fromRequest($rq)->getRouteParser();
         $url = $routeParser->urlFor('boxById', ['id' => $box->id]);
 
