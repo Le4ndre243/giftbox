@@ -7,12 +7,13 @@ use gift\appli\application_core\application\exceptions\BadEmailOrPasswordExcepti
 class AuthnService {
 
     public function sInscrire(string $email, string $password): User{
-        $userEmail = User::where('email', $email)->first();
+        $userEmail = User::where('user_id', $email)->first();
         if(!empty($userEmail)){
             throw new EmailAlreadyUsedException("Email déjà utilisé");
         }
         $model = new User();
-        $model->email    = $email;
+        $model->id = bin2hex(random_bytes(16)); 
+        $model->user_id    = $email;
         $model->password = password_hash($password, PASSWORD_DEFAULT);
         $model->role     = 1;
         $model->save();
@@ -21,7 +22,7 @@ class AuthnService {
     
     }
     public function seConnecter(string $email, string $password): ?User{
-        $userEmail = User::where("email", $email)->first();
+        $userEmail = User::where("user_id", $email)->first();
 
         if(empty($userEmail)){
             throw new BadEmailOrPasswordException();

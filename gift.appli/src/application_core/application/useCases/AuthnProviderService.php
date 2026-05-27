@@ -23,7 +23,7 @@ class AuthnProviderService implements AuthnProviderInterface {
         }
     }
     public function register(string $email, string $password): User{
-        $user = $this->authnService->register($email, $password);
+        $user = $this->authnService->sInscrire($email, $password);
         $_SESSION[self::SESSION_KEY] = $user; 
         return $user;
     }

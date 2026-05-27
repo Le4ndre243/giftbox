@@ -19,20 +19,15 @@ class RegisterAction {
         return $twig->render($res, 'registerView.twig');
     }
 
-    public function signin(Request $req, Response $res): Response {
+    public function register(Request $req, Response $res): Response {
         $twig  = Twig::fromRequest($req);
         $data     = $req->getParsedBody();
         $email    = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
-        if ($this->authnProvider->signin($email, $password)) {
-            return $twig->render($res, 'homeView.twig', [
-                'user' => $this->authnProvider->getSignedInUser()
-            ]);
-        }
-
-        return $twig->render($res, 'registerView.twig', [
-            'error' => 'Email ou mot de passe incorrect.'
+        $user = $this->authnProvider->register($email, $password);
+        return $twig->render($res, 'homeView.twig', [
+            'user' => $user
         ]);
     }
 }
