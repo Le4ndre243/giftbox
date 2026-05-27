@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 return function (\Slim\App $app): void {
-  
-      $app->get('/', gift\appli\webui\actions\GetHomeAction::class)
+
+    $app->get('/', gift\appli\webui\actions\GetHomeAction::class)
         ->setName('home');
 
 
@@ -32,4 +32,6 @@ return function (\Slim\App $app): void {
     $app->get('/box/{id}', gift\appli\webui\actions\GetBoxById::class)
         ->setName('boxById');
 
+    $app->get('/createbox', gift\appli\webui\actions\GetCreateBoxAction::class)
+        ->setName('createBox');
 };
