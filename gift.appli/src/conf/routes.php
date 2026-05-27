@@ -37,6 +37,9 @@ return function (\Slim\App $app): void {
 
     $app->post('/createbox', gift\appli\webui\actions\PostCreateBoxAction::class)
         ->setName('postCreateBox');
+
+    $app->post('/prestation/{id}/add', gift\appli\webui\actions\PostAddPrestationAction::class)
+        ->setName('addPrestation');
     $app->get('/box/access/{token}', gift\appli\webui\actions\GetBoxByTokenAction::class)
         ->setName('boxByToken');
 

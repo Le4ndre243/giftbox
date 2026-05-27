@@ -6,14 +6,19 @@
     <h1>Liste des prestations</h1>
     <div class="prestations-grid">
         {% for p in prestations %}
-            <a class="prestation-card" href="{{ url_for('prestation', {id: p.id}) }}">
-                <img src="{{ img_dir }}/{{ p.img }}" alt="{{ p.libelle }}">
-                <div class="prestation-card-body">
-                    <h3>{{ p.libelle }}</h3>
-                    <p class="prestation-prix">{{ p.tarif }} € / {{ p.unite }}</p>
-                    <p class="prestation-cat">{{ p.categorie.libelle }}</p>
-                </div>
-            </a>
+            <div class="prestation-card">
+                <a href="{{ url_for('prestation', {id: p.id}) }}">
+                    <img src="{{ img_dir }}/{{ p.img }}" alt="{{ p.libelle }}">
+                    <div class="prestation-card-body">
+                        <h3>{{ p.libelle }}</h3>
+                        <p class="prestation-prix">{{ p.tarif }} € / {{ p.unite }}</p>
+                        <p class="prestation-cat">{{ p.categorie.libelle }}</p>
+                    </div>
+                </a>
+                <form action="{{ url_for('addPrestation', {id: p.id}) }}" method="post">
+                    <button type="submit">Ajouter à ma box</button>
+                </form>
+            </div>
         {% else %}
             <p>Aucune prestation disponible.</p>
         {% endfor %}
