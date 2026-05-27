@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Creation d'une box{% endblock %}
+{% block title %}Création d'une box{% endblock %}
 
 {% block content %}
-        <form action="{{ url_for('postCreateBox') }}" method="post">
+        <form action="{{ url_for('postBoxCreate') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
             <label for="name">Nom de la box :</label><br>
             <input type="text" id="name" name="name" required><br>
 
