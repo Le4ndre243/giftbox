@@ -29,6 +29,7 @@ $twig->getEnvironment()->addGlobal('nav_menu', [
 ]);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
 $twig->getEnvironment()->addGlobal('img_dir', $basePath . '/public/img');
+$twig->getEnvironment()->addGlobal('current_box_id', $_SESSION['current_box_id'] ?? null);
 $app->add(TwigMiddleware::create($app, $twig));
 
 // src/conf/routes.php
