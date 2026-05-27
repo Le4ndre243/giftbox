@@ -5,6 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Routing\RouteContext;
 use gift\appli\application_core\application\useCases\BoxService;
+use gift\appli\application_core\application\useCases\CatalogueService;
 use gift\appli\application_core\application\providers\CsrfTokenProvider;
 
 class PostCreateBoxAction
@@ -24,11 +25,19 @@ class PostCreateBoxAction
             throw new \InvalidArgumentException('Le nom de la box est obligatoire.');
         }
 
-        // Création de la box et stockage de l'id en session
+        $coffret_id = isset($data['coffret_id']) && $data['coffret_id'] !== '' ? (int) $data['coffret_id'] : null;
+
         $service = new BoxService();
         $box = $service->createBox($libelle, $description, $kdo, $message_kdo);
 
         $_SESSION['current_box_id'] = $box->id;
+
+        if ($coffret_id !== null) {
+            $coffret = (new CatalogueService())->getCoffretById($coffret_id);
+            foreach ($coffret['prestations'] as $prestation) {
+                $service->addPrestation($box->id, $prestation['id']);
+            }
+        }
 
         $routeParser = RouteContext::fromRequest($rq)->getRouteParser();
         $url = $routeParser->urlFor('boxById', ['id' => $box->id]);

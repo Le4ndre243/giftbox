@@ -5,6 +5,9 @@
 {% block content %}
         <form action="{{ url_for('postBoxCreate') }}" method="post">
             <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {% if coffret_id is defined %}
+                <input type="hidden" name="coffret_id" value="{{ coffret_id }}">
+            {% endif %}
 
             <label for="name">Nom de la box :</label><br>
             <input type="text" id="name" name="name" value="{{ prefill_name|default('') }}" required><br>

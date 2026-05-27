@@ -29,7 +29,8 @@ class GetCreateBoxFromCoffretAction
         $view = Twig::fromRequest($rq);
 
         return $view->render($rs, 'createbox.html.twig', [
-            'csrf_token' => $token,
+            'csrf_token'   => $token,
+            'coffret_id'   => $coffret['coffretType']['id'],
             'prefill_name' => $coffret['coffretType']['libelle'] ?? '',
             'prefill_desc' => $coffret['coffretType']['description'] ?? '',
         ]);
