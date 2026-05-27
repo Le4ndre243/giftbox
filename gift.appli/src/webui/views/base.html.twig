@@ -19,6 +19,8 @@
                 {% endfor %}
                 {% if current_box_id %}
                     <li><a href="{{ url_for('boxById', {id: current_box_id}) }}">Ma box</a></li>
+               {% else %}
+                    <li><a href="{{ url_for('boxCreate') }}">Créer une box</a></li>
                 {% endif %}
             </ul>
         </nav>
