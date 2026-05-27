@@ -48,4 +48,11 @@ $routes($app);
 
 $app->addErrorMiddleware(true, true, true);
 
+$app->add(function ($request, $handler) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    return $handler->handle($request);
+});
+
 return $app;
