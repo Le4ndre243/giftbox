@@ -23,9 +23,13 @@
         {% endfor %}
     </div>
 
-    {% if box.kdo == 0%}
-        <p><strong>Total : {{ box.montant }}€</strong></p>
-{% endif %}
+    {% if box.kdo == 0 %}
+        {% set total = 0 %}
+        {% for presta in box.prestations %}
+            {% set total = total + presta.tarif * presta.pivot.quantite %}
+        {% endfor %}
+        <p><strong>Total : {{ total|number_format(2, ',', ' ') }}€</strong></p>
+    {% endif %}
             <button onclick="window.print()">Imprimer</button>
             {%if box.statut === 1%}
                 <a href="{{ url_for('validateBox', {id: box.id}) }}">
