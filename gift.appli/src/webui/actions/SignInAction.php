@@ -8,7 +8,7 @@ use gift\appli\application_core\application\useCases\AuthnProviderService;
 use gift\appli\application_core\application\useCases\AuthnService;
 use Slim\Views\Twig;
 
-class SigninAction {
+class SignInAction {
 
     private $authnProvider;
     public function __construct() {
