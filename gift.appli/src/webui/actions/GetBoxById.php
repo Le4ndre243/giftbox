@@ -27,4 +27,4 @@ class getBoxById{
         $view = Twig::fromRequest($rq);
         return $view->render($rs, 'boxView.twig', ['box' => $box->toArray()]);
     }
-}
+}   

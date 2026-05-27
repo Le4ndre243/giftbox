@@ -10,6 +10,20 @@ use gift\appli\application_core\application\exceptions\BoxAlreadyValidatedExcept
 
 class BoxService implements BoxInterface {
 
+    public function createBox(string $libelle, string $description, bool $kdo, string $message_kdo): Box {
+        $box = new Box();
+        $box->id = bin2hex(random_bytes(16));
+        $box->libelle = $libelle;
+        $box->description = $description;
+        $box->kdo = $kdo ? 1 : 0;
+        $box->message_kdo = $message_kdo;
+        $box->statut = 1;
+        $box->montant = 0;
+        $box->token = '';
+        $box->save();
+        return $box;
+    }
+
     public function generateToken(string $box_id): string{
         try {
             $box = BoxService::findBoxById($box_id);
