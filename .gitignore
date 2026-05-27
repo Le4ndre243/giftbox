@@ -16,3 +16,5 @@ compose.yml
 .ini
 db.ini
 *.env
+
+gift.appli/src/conf/db.ini
