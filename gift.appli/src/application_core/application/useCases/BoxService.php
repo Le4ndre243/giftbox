@@ -24,6 +24,21 @@ class BoxService implements BoxInterface {
         return $box;
     }
 
+    public function addPrestation(string $box_id, string $presta_id): void {
+        $box = $this->findBoxById($box_id);
+
+        if ($box->statut !== 1) {
+            throw new BoxAlreadyValidatedException($box_id);
+        }
+
+        $existing = $box->prestations()->where('presta_id', $presta_id)->first();
+        if ($existing) {
+            $box->prestations()->updateExistingPivot($presta_id, ['quantite' => $existing->pivot->quantite + 1]);
+        } else {
+            $box->prestations()->attach($presta_id, ['quantite' => 1]);
+        }
+    }
+
     public function generateToken(string $box_id): string{
         try {
             $box = BoxService::findBoxById($box_id);
