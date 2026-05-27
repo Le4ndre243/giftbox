@@ -2,10 +2,10 @@
 
 namespace gift\appli\application_core\application\useCases;
 
-use gift\appli\application_core\application\useCases\AuthnInterface\AuthnService;
-use App\Domain\User;
+use gift\appli\application_core\application\useCases\AuthnService;
+use gift\appli\application_core\domain\entities\User;
 
-class AuthnProvider implements AuthnProviderInterface {
+class AuthnProviderService implements AuthnProviderInterface {
     private const SESSION_KEY = 'auth_user';
 
     public function __construct(private AuthnService $authnService) {}

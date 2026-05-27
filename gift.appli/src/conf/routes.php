@@ -46,4 +46,7 @@ return function (\Slim\App $app): void {
 
     $app->get('/themes/{id}', gift\appli\webui\actions\GetCoffretsByThemeAction::class)
         ->setName('theme');
+    
+    $app->get('/signin',  [gift\appli\webui\actions\SigninAction::class, 'showForm'])->setName('signin');
+    $app->post('/signin', [gift\appli\webui\actions\SigninAction::class, 'signin'])->setName('signin.post');
 };
