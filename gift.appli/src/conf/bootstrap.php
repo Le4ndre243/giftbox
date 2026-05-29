@@ -18,17 +18,13 @@ $app->setBasePath($basePath);
 $twig = Twig::create(__DIR__ . '/../webui/views/', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal('nav_menu', [
-
     ['url' => $basePath . '/', 'label' => 'Accueil'],
     ['url' => $basePath . '/prestations', 'label' => 'Toutes les prestations'],
     ['url' => $basePath . '/categories', 'label' => 'Catégories'],
     ['url' => $basePath . '/coffretType', 'label' => 'Liste des coffrets types'],
     ['url' => $basePath . '/themes', 'label' => 'Liste des themes'],
-    ['url' => $basePath . '/signin', 'label' => 'Se connecter'],
-    ['url' => $basePath . '/register', 'label' => 'S\'inscrire']
-
-
 ]);
+$twig->getEnvironment()->addGlobal('current_user', $_SESSION['auth_user'] ?? null);
 $twig->getEnvironment()->addGlobal('css_dir', $basePath . '/public/css');
 $twig->getEnvironment()->addGlobal('img_dir', $basePath . '/public/img');
 $current_box_id = $_SESSION['current_box_id'] ?? null;
