@@ -66,6 +66,14 @@ class BoxService implements BoxInterface {
         }
     }
 
+    public function getBoxById(string $box_id): array {
+        try {
+            return Box::with('prestations')->findOrFail($box_id)->toArray();
+        } catch (\Exception $e) {
+            throw new EntityNotFoundException("Box", $box_id);
+        }
+    }
+
     public function findBoxById(string $box_id): Box{
         try {
             return Box::findOrFail($box_id);

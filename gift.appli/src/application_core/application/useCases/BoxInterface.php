@@ -13,5 +13,7 @@ interface BoxInterface {
 
     public function getBoxByToken(string $token): array;
 
+    public function getBoxById(string $box_id): array;
+
     public function validateBox(string $box_id): void;
 }
