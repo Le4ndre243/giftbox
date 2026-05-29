@@ -39,3 +39,18 @@ services:
       - gift.net
     depends_on:
       - sql
+
+  gift.api:
+    image: operrin/php:8.5.4
+    command: php -S 0.0.0.0:80 -t /var/www/html
+    ports:
+      - "5181:80"
+    volumes:
+      - ./gift.api:/var/www/html
+      - ./gift.api/src:/var/www/src
+      - ./gift.appli/src:/var/www/gift.appli/src
+    working_dir: /var/www/src
+    networks:
+      - gift.net
+    depends_on:
+      - sql
