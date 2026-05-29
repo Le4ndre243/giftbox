@@ -20,6 +20,7 @@ class BoxService implements BoxInterface {
         $box->statut = 1;
         $box->montant = 0;
         $box->token = '';
+        $box->createur_id = $_SESSION['auth_user']->id ?? null;
         $box->save();
         return $box;
     }

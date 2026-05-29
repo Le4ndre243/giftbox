@@ -16,6 +16,7 @@ class ValidateBoxAction {
 
         try {
             $boxService->validateBox($args['id']);
+            unset($_SESSION['current_box_id']);
         } catch (EntityNotFoundException $e) {
             throw new \Slim\Exception\HttpNotFoundException($rq, $e->getMessage());
         } catch (BoxNotEnoughPrestationsException $e) {
