@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - GiftBox{% endblock %}
+
+{% block content %}
+
+<section>
+    <h2>Mon profil</h2>
+
+    <div class="profile-info">
+        <p><strong>Email :</strong> {{ user.user_id }}</p>
+        <p><strong>Rôle :</strong>
+            {% if user.role == 1 %}
+                Administrateur
+            {% else %}
+                Utilisateur
+            {% endif %}
+        </p>
+    </div>
+
+    <h3>Mes boxes</h3>
+
+    {% if boxes is empty %}
+        <p>Vous n'avez pas encore créé de box. <a href="{{ url_for('boxCreate') }}">Créer une box</a></p>
+    {% else %}
+        <ul class="boxes-list">
+            {% for box in boxes %}
+                <li>
+                    <a href="{{ url_for('boxById', {id: box.id}) }}">{{ box.libelle }}</a>
+                    —
+                    {% if box.statut == 1 %}
+                        En cours
+                    {% elseif box.statut == 2 %}
+                        Validée
+                    {% elseif box.statut == 3 %}
+                        Payée
+                    {% elseif box.statut == 5 %}
+                        Utilisée
+                    {% else %}
+                        Statut {{ box.statut }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+
+{% endblock %}

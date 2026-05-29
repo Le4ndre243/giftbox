@@ -65,4 +65,6 @@ return function (\Slim\App $app): void {
     $app->post('/register', [gift\appli\webui\actions\RegisterAction::class, 'register'])->setName('register.post');
 
     $app->get('/signout', gift\appli\webui\actions\SignOutAction::class)->setName('signout');
+
+    $app->get('/profile', gift\appli\webui\actions\GetProfileAction::class)->setName('profile');
 };
