@@ -24,6 +24,7 @@ class getBoxById{
             throw new \Slim\Exception\HttpInternalServerErrorException($rq, $e->getMessage());
         }
 
+        $_SESSION['current_box_id'] = $id;
         $view = Twig::fromRequest($rq);
         return $view->render($rs, 'boxView.twig', ['box' => $box->toArray()]);
     }

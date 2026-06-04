@@ -21,6 +21,9 @@
                     <h3>{{ presta.libelle }}</h3>
                     <p class="prestation-prix">{% if box.kdo == 0 %}{{ presta.tarif }} € {%endif%} x {{ presta.pivot.quantite }}</p>
                     <p class="prestation-cat">{{ presta.categorie.libelle }}</p>
+                    <form action="{{ url_for('addPrestation', {id: presta.id} ) }}" method="post">
+                        <button type="submit">+</button>
+                    </form>
                 </div>
             </a>
         {% else %}
