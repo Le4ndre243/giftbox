@@ -22,19 +22,21 @@
                     <p class="prestation-prix">{% if box.kdo == 0 %}{{ presta.tarif }} € {%endif%} x {{ presta.pivot.quantite }}</p>
                     <p class="prestation-cat">{{ presta.categorie.libelle }}</p>
 
-                    <form action="{{ url_for('addPrestation', {id: presta.id} ) }}" method="post">
-                        <button type="submit">+</button>
-                    </form>
+                    {% if box.statut == 1 %}
+                        <form action="{{ url_for('addPrestation', {id: presta.id} ) }}" method="post">
+                            <button type="submit">+</button>
+                        </form>
 
-                    {% if presta.pivot.quantite > 1%}
-                    <form action="{{ url_for('subPrestation', {id: presta.id} ) }}" method="post">
-                        <button type="submit">-</button>
-                    </form>
+                        {% if presta.pivot.quantite > 1%}
+                        <form action="{{ url_for('subPrestation', {id: presta.id} ) }}" method="post">
+                            <button type="submit">-</button>
+                        </form>
+                        {%endif%}
+
+                        <form action="{{ url_for('deletePrestation', {id: presta.id} ) }}" method="post">
+                            <button type="submit">Supprimer</button>
+                        </form>
                     {%endif%}
-
-                    <form action="{{ url_for('deletePrestation', {id: presta.id} ) }}" method="post">
-                        <button type="submit">Supprimer</button>
-                    </form>
                 </div>
             </a>
         {% else %}
