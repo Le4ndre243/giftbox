@@ -44,4 +44,9 @@
             <button type="button">Valider</button>
         </a>
     {% endif %}
+    {% if box.statut == 2 %}
+        <a href="{{ url_for('generateToken', {id: box.id}) }}">
+            <button type="button">Partager</button>
+        </a>
+    {% endif %}
 {% endblock %}
