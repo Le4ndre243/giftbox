@@ -25,6 +25,12 @@ class RegisterAction {
         $email    = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
+        if (strlen($password) < 8) {
+            return $twig->render('registerView.twig', [
+                'error' => 'Le mot de passe doit contenir au moins 8 caractères.'
+            ]);
+        }
+
         $user = $this->authnProvider->register($email, $password);
         return $twig->render($res, 'homeView.twig', [
             'user' => $user

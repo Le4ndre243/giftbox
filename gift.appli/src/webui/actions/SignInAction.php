@@ -27,6 +27,12 @@ class SignInAction {
         $email    = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
+        if (strlen($password) < 8) {
+            return $twig->render('signInView.twig', [
+                'error' => 'Le mot de passe doit contenir au moins 8 caractères.'
+            ]);
+        }
+
         if ($this->authnProvider->signin($email, $password)) {
             $routeParser = RouteContext::fromRequest($req)->getRouteParser();
             return $res->withHeader('Location', $routeParser->urlFor('home'))->withStatus(302);

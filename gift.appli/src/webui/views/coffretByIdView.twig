@@ -38,10 +38,11 @@
         {% endfor %}
 
     </div>
-        <a href="{{ url_for('boxCreateFromCoffret', {id: coffretType.id}) }}">
-            <button>Créer une box à partir du coffret</button>
-        </a>
-
+        {% if current_user %}
+            <a href="{{ url_for('boxCreateFromCoffret', {id: coffretType.id}) }}">
+                <button>Créer une box à partir du coffret</button>
+            </a>            
+        {% endif %}
     {% endif %}
 </section>
 
