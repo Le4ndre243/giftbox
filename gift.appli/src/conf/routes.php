@@ -31,6 +31,12 @@ return function (\Slim\App $app): void {
     $app->post('/prestation/{id}/add', gift\appli\webui\actions\PostAddPrestationAction::class)
         ->setName('addPrestation');
 
+    $app->post('/prestation/{id}/sub', gift\appli\webui\actions\PostSubPrestationAction::class)
+        ->setName('subPrestation');
+    
+    $app->post('/prestation/{id}/delete', gift\appli\webui\actions\PostDeletePrestationAction::class)
+        ->setName('deletePrestation');
+
     $app->get('/box/create', gift\appli\webui\actions\GetCreateBoxAction::class)
         ->setName('boxCreate');
 
