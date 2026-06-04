@@ -6,6 +6,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use gift\appli\application_core\application\useCases\AuthnProviderService;
 use gift\appli\application_core\application\useCases\AuthnService;
 use Slim\Views\Twig;
+use Slim\Routing\RouteContext;
 
 class RegisterAction {
 
@@ -31,9 +32,8 @@ class RegisterAction {
             ]);
         }
 
-        $user = $this->authnProvider->register($email, $password);
-        return $twig->render($res, 'homeView.twig', [
-            'user' => $user
-        ]);
+        $this->authnProvider->register($email, $password);
+        $routeParser = RouteContext::fromRequest($req)->getRouteParser();
+        return $res->withHeader('Location', $routeParser->urlFor('home'))->withStatus(302);
     }
 }
