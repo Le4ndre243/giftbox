@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Box{% endblock %}
+{% block title %}Box validée{% endblock %}
 
 {% block content %}
-    <h1>Votre box a bien été validé</h1>
-    
+    <h1>Votre box a bien été validée</h1>
+    <p>Votre box est maintenant validée. Vous pouvez la partager en générant un lien d'accès.</p>
+    <a href="{{ url_for('generateToken', {id: boxId}) }}">
+        <button type="button">Partager</button>
+    </a>
 {% endblock %}
