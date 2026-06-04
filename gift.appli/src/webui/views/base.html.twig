@@ -17,12 +17,13 @@
                 {% for item in nav_menu %}
                     <li><a href="{{ item.url }}">{{ item.label }}</a></li>
                 {% endfor %}
-                {% if current_box_id %}
-                    <li><a href="{{ url_for('boxById', {id: current_box_id}) }}">Ma box</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('boxCreate') }}">Créer une box</a></li>
-                {% endif %}
+                
                 {% if current_user %}
+                    {% if current_box_id %}
+                        <li><a href="{{ url_for('boxById', {id: current_box_id}) }}">Ma box</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('boxCreate') }}">Créer une box</a></li>
+                    {% endif %}
                     <li><a href="{{ url_for('profile') }}">Mon profil</a></li>
                     <li><a href="{{ url_for('signout') }}">Se déconnecter</a></li>
                 {% else %}
