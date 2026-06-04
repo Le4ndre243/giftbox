@@ -1,30 +1,44 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Création d'une box{% endblock %}
-
 {% block content %}
-        <form action="{{ url_for('postBoxCreate') }}" method="post">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-            {% if coffret_id is defined %}
-                <input type="hidden" name="coffret_id" value="{{ coffret_id }}">
-            {% endif %}
+{% if current_user %}
+   
 
-            <label for="name">Nom de la box :</label><br>
-            <input type="text" id="name" name="name" value="{{ prefill_name|default('') }}" required><br>
+    
+            <form action="{{ url_for('postBoxCreate') }}" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                {% if coffret_id is defined %}
+                    <input type="hidden" name="coffret_id" value="{{ coffret_id }}">
+                {% endif %}
 
-            <label for="desc">Description de la box :</label><br>
-            <textarea id="desc" name="desc">{{ prefill_desc|default('') }}</textarea><br>
+                <label for="name">Nom de la box :</label><br>
+                <input type="text" id="name" name="name" value="{{ prefill_name|default('') }}" required><br>
 
-            <label for="giftcheckbox">La box est un cadeau ?</label>
-            <input type="checkbox" id="giftcheckbox" name="giftcheckbox" value="1"
-                   onchange="document.getElementById('gift-message').style.display = this.checked ? 'block' : 'none'"><br>
+                <label for="desc">Description de la box :</label><br>
+                <textarea id="desc" name="desc">{{ prefill_desc|default('') }}</textarea><br>
 
-            <div id="gift-message" style="display:none">
-                <label for="giftmess">Message du cadeau :</label><br>
-                <input type="text" id="giftmess" name="giftmess"><br>
-            </div>
+                <label for="giftcheckbox">La box est un cadeau ?</label>
+                <input type="checkbox" id="giftcheckbox" name="giftcheckbox" value="1"
+                    onchange="document.getElementById('gift-message').style.display = this.checked ? 'block' : 'none'"><br>
 
-            <br>
-            <button type="submit">Créer la box</button>
-        </form>
+                <div id="gift-message" style="display:none">
+                    <label for="giftmess">Message du cadeau :</label><br>
+                    <input type="text" id="giftmess" name="giftmess"><br>
+                </div>
+
+                <br>
+                <button type="submit">Créer la box</button>
+            </form>
+    
+{% else %}
+    <h1 class="title-alert">Vous ne pouvez pas créer de box sans compte</h1>
+    <a href="{{ url_for('signin') }}">
+        <button class="btn">Se connecter</button>
+    </a>
+    <a href="{{ url_for('register') }}">
+        <button class="btn">S'inscrire</button>
+    </a>
+    
+    
+{% endif %}
 {% endblock %}

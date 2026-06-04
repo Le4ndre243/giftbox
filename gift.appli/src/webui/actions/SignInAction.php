@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use gift\appli\application_core\application\useCases\AuthnProviderService;
 use gift\appli\application_core\application\useCases\AuthnService;
 use Slim\Views\Twig;
+use Slim\Routing\RouteContext;
 
 class SignInAction {
 
@@ -16,7 +17,7 @@ class SignInAction {
     }
 
     public function showForm(Request $req, Response $res): Response {
-        $twig = Twig::fromRequest($req); 
+        $twig = Twig::fromRequest($req);
         return $twig->render($res, 'signInView.twig');
     }
 
@@ -26,10 +27,15 @@ class SignInAction {
         $email    = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
-        if ($this->authnProvider->signin($email, $password)) {
-            return $twig->render($res, 'homeView.twig', [
-                'user' => $this->authnProvider->getSignedInUser()
+        if (strlen($password) < 8) {
+            return $twig->render('signInView.twig', [
+                'error' => 'Le mot de passe doit contenir au moins 8 caractères.'
             ]);
+        }
+
+        if ($this->authnProvider->signin($email, $password)) {
+            $routeParser = RouteContext::fromRequest($req)->getRouteParser();
+            return $res->withHeader('Location', $routeParser->urlFor('home'))->withStatus(302);
         }
 
         return $twig->render($res, 'signInView.twig', [

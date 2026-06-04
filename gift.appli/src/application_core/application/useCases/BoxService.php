@@ -71,7 +71,7 @@ class BoxService implements BoxInterface {
     public function generateToken(string $box_id): string{
         try {
             $box = BoxService::findBoxById($box_id);
-            if($box->statut == 3 || $box->statut == 4) {
+            if($box->statut >= 2) {
                 
                 if($box->token != null) {
                     return $box->token; 
